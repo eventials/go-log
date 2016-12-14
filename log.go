@@ -24,34 +24,21 @@ type Logger interface {
 	Error(format string, args ...interface{})
 	Warning(format string, args ...interface{})
 	Info(format string, args ...interface{})
+	Name() string
 }
 
 var (
 	handlers = make(map[string]Logger)
 )
 
-// AddHandler adds a handler to the given loggerName.
-func AddHandler(loggerName string, args ...interface{}) error {
-	var logger Logger
-
-	switch loggerName {
-	case "console":
-		logger = newConsoleLogger()
-	case "sentry":
-		if len(args) == 0 {
-			return fmt.Errorf("Missing paramenter: DSN")
-		}
-
-		dsnURL, ok := args[0].(string)
-
-		if !ok {
-			return fmt.Errorf("DSN paramenter must be string")
-		}
-
-		logger = newSentryLogger(dsnURL)
+// AddLogger adds a Logger handlers.
+func AddLogger(logger Logger) error {
+	if logger == nil {
+		return fmt.Errorf("logger can't be nil.")
 	}
 
-	handlers[loggerName] = logger
+	handlers[logger.Name()] = logger
+
 	return nil
 }
 
