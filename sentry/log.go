@@ -1,4 +1,4 @@
-package log
+package sentrylog
 
 import (
 	"fmt"
@@ -10,9 +10,15 @@ import (
 type SentryLogger struct {
 }
 
-func newSentryLogger(dsnURL string) *SentryLogger {
+// NewSentryLogger return a SentryLogger.
+func NewSentryLogger(dsnURL string) *SentryLogger {
 	raven.SetDSN(dsnURL)
 	return &SentryLogger{}
+}
+
+// Name return the Logger name.
+func (logger *SentryLogger) Name() string {
+	return "sentry"
 }
 
 // Panic will ship panic logs to Sentry.
