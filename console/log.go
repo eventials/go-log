@@ -8,7 +8,7 @@ import (
 	golog "github.com/eventials/golog"
 )
 
-// ConsoleLogger will print all logs in the console.
+// ConsoleLogger will print all logs into the console.
 type ConsoleLogger struct {
 	std *log.Logger
 }
@@ -25,27 +25,27 @@ func (logger *ConsoleLogger) Name() string {
 	return "console"
 }
 
-// Panic logs in console
+// Panic print logs into the console.
 func (logger *ConsoleLogger) Panic(format string, args ...interface{}) {
 	logger.all(golog.LPanic, format, args...)
 }
 
-// Fatal logs in console
+// Fatal print logs into the console.
 func (logger *ConsoleLogger) Fatal(format string, args ...interface{}) {
 	logger.all(golog.LFatal, format, args...)
 }
 
-// Error logs in console
+// Error print logs into the console.
 func (logger *ConsoleLogger) Error(format string, args ...interface{}) {
 	logger.all(golog.LError, format, args...)
 }
 
-// Warning logs in console
+// Warning print logs into the console.
 func (logger *ConsoleLogger) Warning(format string, args ...interface{}) {
 	logger.all(golog.LWarning, format, args...)
 }
 
-// Info logs in console
+// Info print logs into the console.
 func (logger *ConsoleLogger) Info(format string, args ...interface{}) {
 	logger.all(golog.LInfo, format, args...)
 }
