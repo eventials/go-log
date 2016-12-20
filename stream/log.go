@@ -3,6 +3,7 @@ package streamlog
 import (
 	"fmt"
 	"io"
+	"time"
 
 	golog "github.com/eventials/golog"
 )
@@ -50,8 +51,8 @@ func (logger *StreamLogger) Info(format string, args ...interface{}) {
 }
 
 func (logger *StreamLogger) all(logLevel golog.LogLevel, format string, args ...interface{}) {
-	level := fmt.Sprintf("[%s] ", logLevel)
-	format = level + format + "\n"
+	header := fmt.Sprintf("%s [%s] ", time.Now().Format("2006/01/02 15:04:05"), logLevel)
+	format = header + format + "\n"
 
 	msg := fmt.Sprintf(format, args...)
 	logger.writer.Write([]byte(msg))

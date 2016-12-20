@@ -1,7 +1,7 @@
 package streamlog
 
 import (
-	"log"
+	"fmt"
 	"testing"
 )
 
@@ -9,7 +9,7 @@ type StreamMock struct {
 }
 
 func (s *StreamMock) Write(p []byte) (n int, err error) {
-	log.Printf(string(p[:]))
+	fmt.Printf(string(p[:]))
 	return 0, nil
 }
 
