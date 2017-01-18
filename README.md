@@ -18,8 +18,10 @@ log.Error("error: %s", "an error")
 
 | Logger | Description | Dependency |
 |:------:|:-----------:|:----------:|
-| Console | Logs everything to Stderr                | None   |
-| Sentry  | Logs errors, panics and fatals to Sentry | [raven-go]("github.com/getsentry/raven-go")
+| Console       | Logs everything to Stderr                | None   |
+| Sentry        | Logs errors, panics and fatals to Sentry | [raven-go](https://github.com/getsentry/raven-go) |
+| Stream        | Logs everything to io.Stream             | None   |
+| TimedRotating | Logs everything to rolling files         | [lumberjack](https://github.com/natefinch/lumberjack) |
 
 ## License
 
